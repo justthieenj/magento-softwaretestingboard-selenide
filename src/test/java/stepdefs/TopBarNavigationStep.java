@@ -39,7 +39,7 @@ public class TopBarNavigationStep {
 
     @Then("I should see the {} page display with correct {} title")
     public void womenJacketsPageDisplay(String pageURL, String title) {
-        $(".base").shouldHave(text(title + " ab"));
+        $(".base").shouldHave(text(title));
         Assert.assertEquals(pageURL, Selenide.webdriver().driver().url());
     }
 }
