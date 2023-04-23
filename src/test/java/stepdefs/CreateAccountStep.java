@@ -1,17 +1,17 @@
 package stepdefs;
 
-import common.Constants;
-import element.ElementWait;
+import com.codeborne.selenide.Selenide;
+import com.github.common.Constants;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import page.AccountPage;
 import page.CreateAccountPage;
-import utils.BrowserFactory;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CreateAccountStep {
-    WebDriver driver = BrowserFactory.getDriver();
     CreateAccountPage createAccountPage = new CreateAccountPage();
     AccountPage accountPage = new AccountPage();
     String password = "Test@123";
@@ -19,7 +19,7 @@ public class CreateAccountStep {
 
     @Given("I click on Create Account link")
     public void clickOnCreateAccountLink() {
-        driver.get(createAccountPage.getUrl());
+        open(Constants.BASE_URL);
     }
 
     @When("I try to create a customer account with valid information")
@@ -39,19 +39,19 @@ public class CreateAccountStep {
 
     @Then("I created a customer account successfully")
     public void createdCustomerAccountSuccessfully() {
-        Assert.assertEquals(accountPage.getUrl(), driver.getCurrentUrl());
-        Assert.assertTrue(ElementWait.waitVisible(driver, By.cssSelector(".message-success")).isDisplayed());
+        Assert.assertEquals(accountPage.getUrl(), Selenide.webdriver().driver().url());
+        $(".message-success").shouldBe(visible);
     }
 
     @Then("Show error message that first name is required")
     public void showErrMsgFirstNameIsRequired() {
-        Assert.assertEquals(createAccountPage.getUrl(), driver.getCurrentUrl());
-        Assert.assertEquals(createAccountPage.getErMsgFirstName(), Constants.ER_MSG_REQUIRED_FIELD);
+        Assert.assertEquals(createAccountPage.getUrl(), Selenide.webdriver().driver().url());
+        createAccountPage.erMsgPassword.shouldHave(text(Constants.ER_MSG_REQUIRED_FIELD));
     }
 
     @Then("Show error message that last name is required")
     public void showErrMsgLastNameIsRequired() {
-        Assert.assertEquals(createAccountPage.getUrl(), driver.getCurrentUrl());
-        Assert.assertEquals(createAccountPage.getErMsgLastName(), Constants.ER_MSG_REQUIRED_FIELD);
+        Assert.assertEquals(createAccountPage.getUrl(), Selenide.webdriver().driver().url());
+        createAccountPage.erMsgLastName.shouldHave(text(Constants.ER_MSG_REQUIRED_FIELD));
     }
 }
