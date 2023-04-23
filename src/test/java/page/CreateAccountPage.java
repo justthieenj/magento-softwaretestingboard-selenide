@@ -15,11 +15,11 @@ public class CreateAccountPage implements IPage {
     private final SelenideElement txtFirstName = $("#firstname");
     private final SelenideElement erMsgFirstName = $("#firstname-error");
     private final SelenideElement txtLastName = $("#lastname");
-    private final SelenideElement erMsgLastName = $("#lastname-error");
+    public final SelenideElement erMsgLastName = $("#lastname-error");
     private final SelenideElement txtEmail = $("#email_address");
     private final SelenideElement erMsgEmail = $("#email_address-error");
     private final SelenideElement txtPassword = $("[name=password]#password");
-    private final SelenideElement erMsgPassword = $("#password-error");
+    public final SelenideElement erMsgPassword = $("#password-error");
     private final SelenideElement lblPasswordStrength = $("#password-strength-meter-label");
     private final SelenideElement txtConfirmPassword = $("[name=password_confirmation]#password-confirmation");
     private final SelenideElement erMsgConfirmPassword = $("#password-confirmation-error");
