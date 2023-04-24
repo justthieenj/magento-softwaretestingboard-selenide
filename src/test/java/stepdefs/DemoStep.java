@@ -3,10 +3,32 @@ package stepdefs;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.open;
+
 public class DemoStep {
+    private final HashMap<String, Object> state;
+
+    public DemoStep(HashMap<String, Object> state) {
+        this.state = state;
+    }
+
+    @When("I navigate to url")
+    public void navigate() {
+        var url = "https://www.google.com";
+        open(url);
+        state.put("url", url);
+    }
+
+    @Then("I can see url in the address bar")
+    public void verifyUrl() {
+        var url = (String) state.get("url");
+        System.out.println(url);
+    }
+
     @And("I can see list of my orders")
     public void iCanSeeListOfMyOrders(List<String> list) {
         System.out.println(list);
