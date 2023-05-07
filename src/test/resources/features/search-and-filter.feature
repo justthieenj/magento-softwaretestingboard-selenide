@@ -29,8 +29,8 @@ Feature: Search and filter products
 
   @search
   Scenario: SE004 - The most relevant product is displayed fist when search for a specific product name
-    Given I input a specific product name into Search box
-    When I click Search button
-    Then I should see the most relevant product is displayed fist in the search result
+    Given I navigate to homepage
+    When I search with a specific product name: Neve Studio Dance Jacket
+    Then I should see Neve Studio Dance Jacket displays fist in the search result
 
 
