@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    environment {
+        tags = '@demo'
+    }
+    stages {
+        stage('Run Test') {
+            steps {
+                echo 'Testing..'
+                powershell 'echo $Env:JAVA_HOME'
+                powershell 'java -version'
+                powershell '.\\mvnw clean test "-Dcucumber.filter.tags=@search_filter"'
+            }
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                always { allure([
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+                ])
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Generate Allure Report'
+        }
+    }
+}
