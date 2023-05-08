@@ -20,7 +20,7 @@ public class SearchAndFilterStep {
     @Given("I navigate to homepage")
     public void navigateToHomePage() {
         open(Constants.BASE_URL);
-        Selenide.webdriver().driver().getWebDriver().manage().window().fullscreen();
+        Selenide.webdriver().driver().getWebDriver().manage().window().maximize();
     }
 
     @When("I search with an invalid keyword: {}")
