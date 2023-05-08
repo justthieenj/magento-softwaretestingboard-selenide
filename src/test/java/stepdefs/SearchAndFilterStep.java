@@ -2,12 +2,15 @@ package stepdefs;
 
 import com.codeborne.selenide.Selenide;
 import com.github.common.Constants;
+import com.github.common.Utils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import page.HomePage;
 import page.SearchResultPage;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
@@ -24,12 +27,8 @@ public class SearchAndFilterStep {
     }
 
     @When("I search with an invalid keyword: {}")
-    public void searchWithInvalidKeyword(String keyword) {
-        homePage.search(keyword);
-    }
-
     @When("I search with a valid keyword: {}")
-    public void searchWithValidKeyword(String keyword) {
+    public void searchWithKeyword(String keyword) {
         homePage.search(keyword);
     }
 
@@ -43,9 +42,9 @@ public class SearchAndFilterStep {
         homePage.search(item);
     }
 
-    @When("I select option \"Price\" at Sort By box")
-    public void sortByPrice() {
-        searchResultPage.sortBy("Price");
+    @When("I select option {string} at Sort By box")
+    public void sortByPrice(String option) {
+        searchResultPage.sortBy(option);
     }
 
     @Then("I should see {} displays fist in the search result")
@@ -65,14 +64,8 @@ public class SearchAndFilterStep {
 
     @Then("The search result items are sorted by price")
     public void itemsSortedByPrice() {
-        boolean sorted = false;
         var itemListPrice = $$(".product-items>li .price");
-        for (int i = 1; i < itemListPrice.size(); i++) {
-            sorted = Double.parseDouble(itemListPrice.get(i - 1).getText().substring(1)) >= Double.parseDouble(itemListPrice.get(i).getText().substring(1));
-            if (!sorted) {
-                break;
-            }
-        }
-        Assert.assertTrue(sorted);
+        List<Double> actualPrice = itemListPrice.texts().stream().map(s -> Double.parseDouble(s.substring(1))).toList();
+        Assert.assertTrue(Utils.isSorted(actualPrice));
     }
 }
