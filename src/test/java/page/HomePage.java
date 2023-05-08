@@ -2,11 +2,12 @@ package page;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.common.Constants;
-import component.TopBar;
+import component.Header;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
-public class HomePage implements IPage, TopBar {
+public class HomePage implements IPage, Header {
 
     @Override
     public String getUrl() {
@@ -14,8 +15,13 @@ public class HomePage implements IPage, TopBar {
     }
 
     private final SelenideElement createAccountLink = $("header .authorization-link+li>a");
+    private final String topBarNav = "//nav[@class='navigation']//span[text()='%s']";
 
     public void clickCreateAccountLink() {
         createAccountLink.click();
+    }
+
+    public SelenideElement getTopBarItem(String item) {
+        return $x(topBarNav.formatted(item));
     }
 }

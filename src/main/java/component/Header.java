@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public interface TopBar {
+public interface Header {
     String topBarNav = "//nav[@class='navigation']//span[text()='%s']";
     SelenideElement searchBox = $("#search");
 

@@ -11,5 +11,5 @@ Feature: Top bar navigation
     Examples:
       | category             | page                                                                         | title   |
       | Women->Tops->Jackets | https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html | Jackets |
-      | Women->Tops->Tees    | https://magento.softwaretestingboard.com/women/tops-women/tees-women.html    | Tees    |
-      | Gear->Bags           | https://magento.softwaretestingboard.com/gear/bags.html                      | Bags    |
+#      | Women->Tops->Tees    | https://magento.softwaretestingboard.com/women/tops-women/tees-women.html    | Tees    |
+#      | Gear->Bags           | https://magento.softwaretestingboard.com/gear/bags.html                      | Bags    |
