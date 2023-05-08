@@ -2,11 +2,12 @@ package page;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.common.Constants;
+import component.Header;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class HomePage implements IPage {
+public class HomePage implements IPage, Header {
 
     @Override
     public String getUrl() {
