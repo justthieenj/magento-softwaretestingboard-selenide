@@ -1,5 +1,6 @@
 package cucumbertest;
 
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
@@ -7,5 +8,5 @@ import io.cucumber.testng.CucumberOptions;
         glue = "stepdefs",
         plugin = {"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm", "pretty"}
 )
-public class CreateAccountTest extends AbstractCucumber {
+public class CreateAccountTest extends AbstractTestNGCucumberTests {
 }

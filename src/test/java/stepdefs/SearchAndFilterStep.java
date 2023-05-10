@@ -10,11 +10,9 @@ import org.testng.Assert;
 import page.HomePage;
 import page.SearchResultPage;
 
-import java.util.List;
-
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class SearchAndFilterStep {
     HomePage homePage = new HomePage();
@@ -34,12 +32,12 @@ public class SearchAndFilterStep {
 
     @When("I click the List button")
     public void clickListButton() {
-        $("#mode-list").click();
+        searchResultPage.listView();
     }
 
     @When("I search with a specific product name: {}")
-    public void searchWithSpecificName(String item) {
-        homePage.search(item);
+    public void searchWithKeyWord(String keyword) {
+        homePage.search(keyword);
     }
 
     @When("I select option {string} at Sort By box")
@@ -49,23 +47,21 @@ public class SearchAndFilterStep {
 
     @Then("I should see {} displays fist in the search result")
     public void productIsDisplayedFirst(String item) {
-        $x("//*[@class='products list items product-items']/li[1]//a[@class='product-item-link']").shouldHave(text(item));
+        searchResultPage.productNames.first().should(text(item));
     }
 
     @Then("I should see the search result return no item")
     public void searchResultReturnNoItem() {
-        $(".message.notice").shouldHave(text("Your search returned no results."));
+        searchResultPage.noticeMessage.shouldHave(text("Your search returned no results."));
     }
 
     @Then("I see the search result items are displayed as a list")
     public void itemDisplayAsAList() {
-        $(".search.results>.products").shouldHave(cssClass("list"));
+        searchResultPage.searchResultGrid.shouldHave(cssClass("list"));
     }
 
     @Then("The search result items are sorted by price")
     public void itemsSortedByPrice() {
-        var itemListPrice = $$(".product-items>li .price");
-        List<Double> actualPrice = itemListPrice.texts().stream().map(s -> Double.parseDouble(s.substring(1))).toList();
-        Assert.assertTrue(Utils.isSorted(actualPrice));
+        Assert.assertTrue(Utils.isSortedDes(searchResultPage.getItemsPrice()));
     }
 }
