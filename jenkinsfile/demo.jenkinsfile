@@ -9,7 +9,6 @@ pipeline {
                 echo 'Testing..'
                 powershell 'echo $Env:JAVA_HOME'
                 powershell 'java -version'
-                powershell '.\\mvnw clean'
                 powershell '.\\mvnw test "-Dcucumber.filter.tags=@search_filter"'
             }
             post {
