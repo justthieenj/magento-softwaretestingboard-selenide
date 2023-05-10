@@ -10,7 +10,7 @@ pipeline {
                 powershell 'echo $Env:JAVA_HOME'
                 powershell 'java -version'
                 powershell '.\\mvnw clean'
-                powershell '.\\mvnw test "-Dcucumber.filter.tags=@search_filter"'
+                powershell '.\\mvnw test "-Dcucumber.filter.tags=@demo"'
             }
             post {
                 // If Maven was able to run the tests, even if some of the test
@@ -19,17 +19,14 @@ pipeline {
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'target/allure-results']]
                 ])
-                emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-                                            }
-                                        }
-                                    }
                 }
+                                    emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
             }
         }
     }
+}
     post {
         always {
             echo 'Generate Allure Report'
         }
     }
-}
