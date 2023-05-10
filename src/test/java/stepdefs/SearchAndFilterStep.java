@@ -12,7 +12,7 @@ import page.SearchResultPage;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class SearchAndFilterStep {
     HomePage homePage = new HomePage();
@@ -47,7 +47,7 @@ public class SearchAndFilterStep {
 
     @Then("I should see {} displays fist in the search result")
     public void productIsDisplayedFirst(String item) {
-        Assert.assertEquals(item, searchResultPage.getSearchResult().get(0).getName());
+        searchResultPage.productNames.first().should(text(item));
     }
 
     @Then("I should see the search result return no item")
