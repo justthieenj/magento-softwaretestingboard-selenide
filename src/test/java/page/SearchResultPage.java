@@ -13,8 +13,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class SearchResultPage implements Header {
     private final SelenideElement dropSortBy = $("#sorter");
-    private final SelenideElement btnList = $("#mode-list");
-    private final SelenideElement btnGrid = $("#mode-grid");
+    public final SelenideElement btnListView = $("#mode-list");
+    public final SelenideElement btnGridView = $("#mode-grid");
     public final SelenideElement noticeMessage = $(".message.notice");
     public final SelenideElement searchResultGrid = $(".search.results>.products");
     public final ElementsCollection productNames = $$(".product-item-link");
@@ -22,14 +22,6 @@ public class SearchResultPage implements Header {
 
     public void sortBy(String option) {
         dropSortBy.selectOption(option);
-    }
-
-    public void listView() {
-        btnList.click();
-    }
-
-    public void gridView() {
-        btnGrid.click();
     }
 
     public List<Product> getSearchResult() {

@@ -5,8 +5,7 @@ import com.github.common.Constants;
 import com.github.common.Utils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.testng.Assert;
+import io.cucumber.java.en.When;import org.testng.Assert;
 import page.HomePage;
 import page.SearchResultPage;
 
@@ -32,7 +31,7 @@ public class SearchAndFilterStep {
 
     @When("I click the List button")
     public void clickListButton() {
-        searchResultPage.listView();
+        searchResultPage.btnListView.click();
     }
 
     @When("I search with a specific product name: {}")
