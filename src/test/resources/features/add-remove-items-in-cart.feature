@@ -29,7 +29,6 @@ Feature: Add/Remove items in shopping cart
 #    When I click on the Shopping Cart icon
 #    Then I should see the product is added into shopping cart as the top most item
 #    Then I should see the product details matches with what I selected
-#    Then I should see the Items In Cart and Cart Subtotal number updated
 #
 #  @add_item
 #  Scenario: CART004 - I can't add an item into shopping cart from a product details page if don't select size and color
@@ -42,11 +41,9 @@ Feature: Add/Remove items in shopping cart
 #  Scenario: CART005 - I can remove an item from the shopping cart dropdown
 #    Given I add an item to the shopping cart
 #    When I click on the Shopping Cart icon
-#    When I click on the Remove icon of the newly added item
-#    When I click OK
+#    When I remove the newly added item
 #    When I click on the Shopping Cart icon
 #    Then I should see the product is removed from shopping cart
-#    Then I should see the Items In Cart and Cart Subtotal number updated
 #
 #  @remove_item
 #  Scenario: CART006 - I can remove an item from the shopping cart page
