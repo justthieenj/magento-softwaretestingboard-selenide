@@ -44,9 +44,9 @@ public class SearchAndFilterStep {
     }
 
     @When("I search with a specific product name: {}")
-    public void searchWithKeyWord(String keyword) {
-        homePage.search(keyword);
-        state.put("Name", keyword);
+    public void searchWithKeyWord(String productName) {
+        homePage.search(productName);
+        state.put("Name", productName);
     }
 
     @When("I select option {string} at Sort By box")

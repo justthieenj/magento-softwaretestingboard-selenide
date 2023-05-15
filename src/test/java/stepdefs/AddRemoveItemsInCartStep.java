@@ -46,19 +46,19 @@ public class AddRemoveItemsInCartStep {
     }
 
     @Then("I should be navigated to the product details page")
-    public void iShouldBeNavigatedToTheProductDetailsPage() {
+    public void getNavigatedToProductDetailsPage() {
         $(".base").shouldHave(text((String) state.get("Name")));
     }
 
     @Then("I should see the product details matches with what I selected")
-    public void iShouldSeeTheProductDetailsMatchesWithWhatISelected() {
+    public void verifyProductDetails() {
         searchResultPage.openItemDetails();
         searchResultPage.getItemDetailSize().shouldHave(text((String) state.get("Size")));
         searchResultPage.getItemDetailColor().shouldHave(text((String) state.get("Color")));
     }
 
     @Then("I should see a warning message: {}")
-    public void iShouldSeeAWarningMessageYouNeedToChooseOptionsForYourItem(String message) {
+    public void verifyWarningMessage(String message) {
         $("[role=alert]>div>div").shouldHave(text(message));
     }
 }

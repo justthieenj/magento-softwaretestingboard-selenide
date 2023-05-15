@@ -20,11 +20,11 @@ public class SearchResultPage implements Header {
     public final SelenideElement searchResultGrid = $(".search.results>.products");
     public final ElementsCollection productNames = $$(".product-item-link");
     public final ElementsCollection productPrices = $$(".product-items>li .price");
-    public String itemName = "//a[@class='product-item-link' and contains(text(),'%s')]";
-    public String itemSize = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//div[@aria-label='Size']/div[@option-label='%s']";
-    public String itemColor = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//div[@aria-label='Color']/div[@option-label='%s']";
-    public String btnAddToCart = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//button[@title='Add to Cart']";
-    public String btnAdded = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//button[@title='Added']";
+    private final String itemName = "//a[@class='product-item-link' and contains(text(),'%s')]";
+    private final String itemSize = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//div[@aria-label='Size']/div[@option-label='%s']";
+    private final String itemColor = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//div[@aria-label='Color']/div[@option-label='%s']";
+    private final String btnAddToCart = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//button[@title='Add to Cart']";
+    private final String btnAdded = "//a[@class='product-item-link' and contains(text(),'%s')]//ancestor::li[@class='item product product-item']//button[@title='Added']";
 
     public void sortBy(String option) {
         dropSortBy.selectOption(option);
