@@ -2,12 +2,16 @@ package stepdefs;
 
 import com.codeborne.selenide.Selenide;
 import com.github.common.Constants;
+import com.github.common.Key;
 import com.github.common.Utils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;import org.testng.Assert;
+import io.cucumber.java.en.When;
+import org.testng.Assert;
 import page.HomePage;
 import page.SearchResultPage;
+
+import java.util.HashMap;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
@@ -16,6 +20,12 @@ import static com.codeborne.selenide.Selenide.open;
 public class SearchAndFilterStep {
     HomePage homePage = new HomePage();
     SearchResultPage searchResultPage = new SearchResultPage();
+
+    private final HashMap<Key, Object> state;
+
+    public SearchAndFilterStep(HashMap<Key, Object> state) {
+        this.state = state;
+    }
 
     @Given("I navigate to homepage")
     public void navigateToHomePage() {
@@ -35,8 +45,9 @@ public class SearchAndFilterStep {
     }
 
     @When("I search with a specific product name: {}")
-    public void searchWithKeyWord(String keyword) {
-        homePage.search(keyword);
+    public void searchWithKeyWord(String productName) {
+        homePage.search(productName);
+        state.put(Key.PRODUCT_NAME, productName);
     }
 
     @When("I select option {string} at Sort By box")
