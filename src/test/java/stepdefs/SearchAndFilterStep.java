@@ -2,6 +2,7 @@ package stepdefs;
 
 import com.codeborne.selenide.Selenide;
 import com.github.common.Constants;
+import com.github.common.Key;
 import com.github.common.Utils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,9 +21,9 @@ public class SearchAndFilterStep {
     HomePage homePage = new HomePage();
     SearchResultPage searchResultPage = new SearchResultPage();
 
-    private final HashMap<String, Object> state;
+    private final HashMap<Key, Object> state;
 
-    public SearchAndFilterStep(HashMap<String, Object> state) {
+    public SearchAndFilterStep(HashMap<Key, Object> state) {
         this.state = state;
     }
 
@@ -46,7 +47,7 @@ public class SearchAndFilterStep {
     @When("I search with a specific product name: {}")
     public void searchWithKeyWord(String productName) {
         homePage.search(productName);
-        state.put("Product Name", productName);
+        state.put(Key.PRODUCT_NAME, productName);
     }
 
     @When("I select option {string} at Sort By box")
