@@ -24,7 +24,7 @@ public class TopBarNavigationStep {
     }
 
     @When("I navigate to {} on the top bar")
-    public void iNavigateToWomenTopsJacketsOnTheTopBar(String items) {
+    public void navigateToCategoryPage(String items) {
         List<String> navItems = List.of(items.split("->"));
         //TODO: wait for the top bar to be stable
         Selenide.sleep(1000);
