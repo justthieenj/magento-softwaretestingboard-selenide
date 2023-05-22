@@ -18,7 +18,6 @@ pipeline {
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'target/allure-results']]
                 ])
-                emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
                 }
             }
         }
