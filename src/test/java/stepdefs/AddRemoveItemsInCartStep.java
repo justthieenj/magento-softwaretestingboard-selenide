@@ -19,20 +19,20 @@ public class AddRemoveItemsInCartStep {
 
     @When("I select size {} and color {} for the product")
     public void selectSizeAndColor(String size, String color) {
-        searchResultPage.selectSize((String) state.get("Name"), size);
-        searchResultPage.selectColor((String) state.get("Name"), color);
-        state.put("Size", size);
-        state.put("Color", color);
+        searchResultPage.selectSize((String) state.get("Product Name"), size);
+        searchResultPage.selectColor((String) state.get("Product Name"), color);
+        state.put("Product Size", size);
+        state.put("Product Color", color);
     }
 
     @When("I add the product to cart")
     public void addProductToCart() {
-        searchResultPage.addItemToCart((String) state.get("Name"));
+        searchResultPage.addItemToCart((String) state.get("Product Name"));
     }
 
     @When("I wait until product is added to cart")
     public void waitUntilProductIsAdded() {
-        searchResultPage.waitItemAdded((String) state.get("Name"));
+        searchResultPage.waitItemAdded((String) state.get("Product Name"));
     }
 
     @When("I click on the Shopping Cart icon")
@@ -42,19 +42,19 @@ public class AddRemoveItemsInCartStep {
 
     @Then("I should see the product is added into shopping cart as the top most item")
     public void verifyTopMostItemName() {
-        searchResultPage.getCartItemsName().get(0).shouldHave(text((String) state.get("Name")));
+        searchResultPage.getCartItemsName().get(0).shouldHave(text((String) state.get("Product Name")));
     }
 
     @Then("I should be navigated to the product details page")
     public void getNavigatedToProductDetailsPage() {
-        $(".base").shouldHave(text((String) state.get("Name")));
+        $(".base").shouldHave(text((String) state.get("Product Name")));
     }
 
     @Then("I should see the product details matches with what I selected")
     public void verifyProductDetails() {
         searchResultPage.openItemDetails();
-        searchResultPage.getItemDetailSize().shouldHave(text((String) state.get("Size")));
-        searchResultPage.getItemDetailColor().shouldHave(text((String) state.get("Color")));
+        searchResultPage.getItemDetailSize().shouldHave(text((String) state.get("Product Size")));
+        searchResultPage.getItemDetailColor().shouldHave(text((String) state.get("Product Color")));
     }
 
     @Then("I should see a warning message: {}")
