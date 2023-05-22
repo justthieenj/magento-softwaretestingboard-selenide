@@ -61,6 +61,6 @@ public class AddRemoveItemsInCartStep {
 
     @Then("I should see a warning message: {}")
     public void verifyWarningMessage(String message) {
-        $("[role=alert]>div>div").shouldHave(text(message));
+        $("[role=alert]>div>div").shouldHave(text(message + " "));
     }
 }
