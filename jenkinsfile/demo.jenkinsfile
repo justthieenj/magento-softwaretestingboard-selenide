@@ -9,7 +9,7 @@ pipeline {
                 echo 'Testing..'
                 powershell 'echo $Env:JAVA_HOME'
                 powershell 'java -version'
-                powershell '.\\mvnw test "-Dcucumber.filter.tags=@search_filter"'
+                powershell '.\\mvnw clean test "-Dcucumber.filter.tags=@search_filter"'
             }
             post {
                 // If Maven was able to run the tests, even if some of the test
