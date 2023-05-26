@@ -4,9 +4,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features/create-customer-account.feature",
+        features = "src/test/resources/features/",
         glue = "stepdefs",
         plugin = {"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm", "pretty"}
 )
-public class CreateAccountTest extends AbstractTestNGCucumberTests {
+public class AllCucumberTest extends AbstractTestNGCucumberTests {
 }
